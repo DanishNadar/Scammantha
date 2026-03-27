@@ -1,0 +1,85 @@
+
+:root{
+  --bg:#0b1020; --panel:#121a30; --text:#eef3ff; --muted:#9cb2d4; --accent:#6db7ff; --line:#263355; --danger:#ff6978;
+}
+*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(180deg,#08101d,#0c1224 30%,#0b1020);color:var(--text);font:15px/1.45 Inter,system-ui,Arial,sans-serif}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer;border:1px solid var(--line);background:#1a2344;color:var(--text);padding:10px 12px;border-radius:12px}
+button.primary{background:linear-gradient(180deg,#3a78ff,#2159d7)}
+button.danger{background:linear-gradient(180deg,#d24959,#9e2735)}
+button:hover{filter:brightness(1.07)}
+input,textarea,select{width:100%;padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:#0f1730;color:var(--text)}
+code{background:#0f1730;padding:2px 4px;border-radius:6px}
+.app-shell{padding:20px;max-width:1700px;margin:0 auto}
+.topbar{display:flex;justify-content:space-between;gap:18px;align-items:flex-start;margin-bottom:18px}
+.topbar h1{margin:0 0 4px 0;font-size:34px}
+.subtitle{margin:0;color:var(--muted)}
+.topbar-actions{display:flex;gap:10px;flex-wrap:wrap}
+.main-grid{display:grid;grid-template-columns:320px 1fr 320px;gap:16px}
+.panel{background:rgba(18,26,48,.95);border:1px solid var(--line);border-radius:22px;padding:16px;box-shadow:0 14px 40px rgba(0,0,0,.35)}
+.panel-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.compact-space{margin-top:18px}
+.mission-list{display:grid;gap:10px}
+.mission-card{display:block;text-align:left;width:100%;padding:14px;border-radius:16px;background:#121a33}
+.mission-card.active{outline:2px solid var(--accent)}
+.mission-card h3{margin:0 0 6px 0;font-size:16px}
+.mission-card p{margin:0;color:var(--muted);font-size:13px}
+.stacked{display:grid;gap:6px;margin-bottom:12px}
+.small-note{font-size:12px;color:var(--muted)}
+.server-status,.diagnostics{padding:10px 12px;border-radius:12px;background:#0f1730;border:1px solid var(--line)}
+.server-status.good{color:#9af4ca;border-color:#2a6c55}
+.server-status.bad{color:#ffb0b8;border-color:#70323c}
+.diagnostics{display:grid;gap:6px;font-size:13px;color:var(--muted)}
+.guide-list{padding-left:18px;margin:0;display:grid;gap:9px}
+.scene-panel{padding:14px}
+.scene-header{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;margin-bottom:14px}
+.scene-header h2{margin:0 0 5px 0}
+.scene-header p{margin:0;color:var(--muted)}
+.badges{display:flex;flex-wrap:wrap;gap:8px}
+.badge{padding:8px 10px;border:1px solid var(--line);border-radius:999px;background:#0d1530;color:var(--muted);font-size:12px}
+.scene-layout{display:grid;grid-template-columns:270px 1fr;gap:16px}
+.sprite-wrap{background:radial-gradient(circle at 50% 20%,rgba(121,164,255,.18),transparent 40%),#0d1430;border:1px solid var(--line);border-radius:24px;padding:16px}
+.sprite-wrap.talking{box-shadow:0 0 0 2px rgba(111,183,255,.3),0 10px 30px rgba(0,0,0,.3)}
+.emotion-meter{display:grid;gap:8px;margin-top:10px;font-size:13px;color:var(--muted)}
+.meter-bar{height:10px;border-radius:999px;background:#0a1023;border:1px solid var(--line);overflow:hidden}
+#moodFill{height:100%;width:8%;background:linear-gradient(90deg,#8feecf,#ffcf79,#ff6b78)}
+.screen-column{display:grid;gap:12px}
+.screen-tabs{display:flex;gap:8px;flex-wrap:wrap}
+.tab.active{background:#24448c}
+.sim-screen{min-height:450px;border:1px solid var(--line);border-radius:20px;background:#08101f;padding:18px;overflow:auto}
+.desktop-bg{min-height:414px;background:linear-gradient(160deg,#17264c,#091121 60%);border-radius:18px;padding:14px;position:relative}
+.desktop-grid{display:grid;grid-template-columns:repeat(5,90px);gap:14px}
+.desktop-icon{text-align:center;color:#d8e2ff;font-size:12px}
+.icon-box{height:58px;border-radius:16px;border:1px solid #5278c0;display:grid;place-items:center;background:rgba(92,142,255,.12)}
+.window{position:absolute;border:1px solid #4766a8;border-radius:16px;background:#eff5ff;color:#1c2847;box-shadow:0 10px 28px rgba(0,0,0,.28);overflow:hidden}
+.window .titlebar{padding:8px 12px;background:linear-gradient(180deg,#365fae,#234488);color:#fff;font-weight:600}
+.window .content{padding:14px}
+.window.support{top:46px;left:135px;width:330px}
+.window.remote{top:120px;left:480px;width:290px}
+.window.scan{top:210px;left:200px;width:360px}
+.portal-banner,.fake-alert,.code-box,.gift-card,.dnr-banner,.notebook{border-radius:14px}
+.portal-banner{background:#dbe7ff;padding:10px;margin-bottom:10px}
+.fake-alert{background:#ffe2e1;color:#7c2431;padding:10px;margin-top:10px}
+.code-box{padding:16px;background:#0e1a38;color:#d9e4ff;font-size:30px;font-weight:800;letter-spacing:4px;text-align:center;margin:10px 0}
+.shop-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px}
+.gift-card{padding:12px;background:#121b33;border:1px solid var(--line)}
+.redeem-panel,.notebook{padding:14px;background:#121b33;border:1px solid var(--line)}
+.dnr-banner{background:linear-gradient(90deg,#ffd05a,#ff7a7a);color:#24150d;padding:14px;font-size:28px;font-weight:900;text-align:center;margin-bottom:10px}
+.transcript-panel{margin-top:14px}
+.transcript-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.transcript{display:grid;gap:10px;max-height:300px;overflow:auto;padding-right:4px}
+.line{padding:10px 12px;border-radius:14px;border:1px solid var(--line)}
+.line .speaker{display:block;font-weight:700;margin-bottom:4px}
+.line.player{background:#16294b}
+.line.scammer{background:#2a1530}
+.line.trainer{background:#13271d}
+.chat-row{display:grid;grid-template-columns:1fr auto;gap:10px;margin-top:12px}
+.controls-section{display:grid;gap:10px}
+.lesson-feed{display:grid;gap:10px}
+.lesson-card{padding:10px 12px;border-radius:14px;background:#0f1730;border:1px solid var(--line)}
+@media (max-width: 1280px){.main-grid{grid-template-columns:1fr}.scene-layout{grid-template-columns:1fr}}
+
+
+.sound-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
+.sound-btn{width:100%;text-align:center}

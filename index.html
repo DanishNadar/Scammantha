@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Scammantha v5</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div>
+        <h1>Scammantha</h1>
+        <p class="subtitle">Interactive scam-awareness simulator with live Groq dialog, dual microphone capture, simulated scam screens, training tips, and uploaded soundboard clips.</p>
+      </div>
+      <div class="topbar-actions">
+        <button id="startMissionBtn" class="primary">Start Mission</button>
+        <button id="unlockMicBtn">Unlock Mic</button>
+        <button id="toggleMicBtn">Start Mic</button>
+        <button id="interruptBtn">Cut In</button>
+      </div>
+    </header>
+
+    <main class="main-grid">
+      <section class="left-rail panel">
+        <div class="panel-header"><h2>Missions</h2></div>
+        <div id="missionList" class="mission-list"></div>
+
+        <div class="panel-header compact-space"><h2>Server</h2></div>
+        <div class="stacked">
+          <span>Status</span>
+          <div id="serverStatus" class="server-status">Checking server…</div>
+        </div>
+        <label class="stacked">
+          <span>Chat model</span>
+          <input id="modelInput" type="text" value="openai/gpt-oss-20b" />
+        </label>
+        <label class="stacked">
+          <span>Voice Accent</span>
+          <select id="accentSelect">
+            <option value="en-IN">Indian English</option>
+            <option value="en-GB">British English</option>
+            <option value="en-US">American English</option>
+          </select>
+        </label>
+        <button id="saveSettingsBtn">Save Client Settings</button>
+        <div class="small-note">Groq key is server-side only. Put it once in <code>.env</code> as <code>GROQ_API_KEY=...</code>.</div>
+
+        <div class="panel-header compact-space"><h2>Mic Diagnostics</h2></div>
+        <div id="micDiag" class="diagnostics">
+          <div>Secure context: <span id="diagSecure">unknown</span></div>
+          <div>getUserMedia: <span id="diagGum">unknown</span></div>
+          <div>MediaRecorder: <span id="diagMr">unknown</span></div>
+          <div>SpeechRecognition: <span id="diagSr">unknown</span></div>
+          <div>Selected mode: <span id="diagMode">none</span></div>
+        </div>
+
+        <div class="panel-header compact-space"><h2>Safety Guide</h2></div>
+        <ul id="guideList" class="guide-list"></ul>
+      </section>
+
+      <section class="center-stage">
+        <div class="panel scene-panel">
+          <div class="scene-header">
+            <div>
+              <h2 id="missionTitle">Choose a mission</h2>
+              <p id="objectiveText">Objective: survive the scam, learn the tactics, and break the flow before the money is gone.</p>
+            </div>
+            <div class="badges">
+              <span class="badge" id="stageBadge">Stage: none</span>
+              <span class="badge" id="tacticBadge">Tactic: none</span>
+              <span class="badge" id="riskBadge">Risk: calm</span>
+            </div>
+          </div>
+
+          <div class="scene-layout">
+            <div class="scammer-column">
+              <div id="spriteWrap" class="sprite-wrap idle">
+                <svg viewBox="0 0 240 260" aria-label="scammer sprite">
+                  <defs>
+                    <linearGradient id="hoodieShade" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0%" stop-color="#293352"></stop>
+                      <stop offset="100%" stop-color="#0f1831"></stop>
+                    </linearGradient>
+                  </defs>
+                  <rect x="0" y="0" width="240" height="260" rx="24" fill="#101525"></rect>
+                  <path d="M52 242 Q60 126 120 56 Q180 126 188 242 Z" fill="url(#hoodieShade)"></path>
+                  <ellipse cx="120" cy="116" rx="54" ry="64" fill="#d79b74"></ellipse>
+                  <circle cx="100" cy="110" r="7" fill="#141414"></circle>
+                  <circle cx="140" cy="110" r="7" fill="#141414"></circle>
+                  <path d="M92 94 Q100 88 108 94" stroke="#141414" stroke-width="4" fill="none"></path>
+                  <path d="M132 94 Q140 88 148 94" stroke="#141414" stroke-width="4" fill="none"></path>
+                  <path id="mouthPath" d="M104 144 Q120 153 136 144" stroke="#7f2e1b" stroke-width="5" fill="none" stroke-linecap="round"></path>
+                  <path d="M82 72 Q120 34 158 72" stroke="#1a1a1a" stroke-width="18" fill="none" stroke-linecap="round"></path>
+                  <rect x="90" y="188" width="60" height="18" rx="8" fill="#e8e8e8"></rect>
+                  <rect x="104" y="201" width="32" height="12" rx="6" fill="#8a3f1c"></rect>
+                </svg>
+                <div class="emotion-meter">
+                  <span>Scammer mood</span>
+                  <div class="meter-bar"><div id="moodFill"></div></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="screen-column">
+              <div class="screen-tabs">
+                <button class="tab active" data-screen="desktop">Desktop</button>
+                <button class="tab" data-screen="shop">Gift Card Shop</button>
+                <button class="tab" data-screen="redeem">Redeem Counter</button>
+                <button class="tab" data-screen="notes">Trainer Notebook</button>
+              </div>
+              <div id="simScreen" class="sim-screen"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel transcript-panel">
+          <div class="transcript-header">
+            <h2>Live Call</h2>
+            <div class="small-note" id="micStatus">Mic: off</div>
+          </div>
+          <div id="transcript" class="transcript"></div>
+          <div class="chat-row">
+            <input id="manualInput" type="text" placeholder="Type what you say to the scammer..." />
+            <button id="sendManualBtn" class="primary">Send</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="right-rail panel">
+        <div class="panel-header"><h2>Live Interaction</h2></div>
+        <div class="controls-section">
+          <button id="openSupportBtn">Open Support Page</button>
+          <button id="visitSupportBtn">Visit Support Site</button>
+          <button id="installToolBtn">Install Remote Tool</button>
+          <button id="grantRemoteBtn">Grant Remote Access</button>
+          <button id="runScanBtn">Run Fake Scan</button>
+        </div>
+
+        <div class="panel-header compact-space"><h2>Gift Cards</h2></div>
+        <label class="stacked">
+          <span>How many cards?</span>
+          <input id="cardCountInput" type="number" min="1" max="20" value="2" />
+        </label>
+        <label class="stacked">
+          <span>Card value</span>
+          <input id="cardValueInput" type="number" min="5" max="500" step="5" value="25" />
+        </label>
+        <button id="buyCardsBtn">Buy Gift Cards</button>
+
+        <div class="panel-header compact-space"><h2>Redeem</h2></div>
+        <label class="stacked">
+          <span>Code entry</span>
+          <textarea id="redeemInput" rows="4" placeholder="Type codes here or nonsense here..."></textarea>
+        </label>
+        <button id="redeemBtn">Redeem Cards</button>
+        <button id="doNotRedeemBtn" class="danger">DO NOT REDEEM!!!</button>
+
+        <div class="panel-header compact-space"><h2>Lessons</h2></div>
+        <div id="lessonFeed" class="lesson-feed"></div>
+      </section>
+    </main>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
