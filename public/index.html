@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Scammantha</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-orb"></div>
+        <div>
+          <h1>Scammantha</h1>
+          <p class="subtitle">Scambaiting simulator • immersive training mode • troll the scammer and stop the loss</p>
+        </div>
+      </div>
+      <div class="top-actions">
+        <button id="startMissionBtn" class="primary">Start Mission</button>
+        <button id="unlockMicBtn">Unlock Mic</button>
+        <button id="toggleMicBtn">Start Mic</button>
+        <button id="interruptBtn">Cut In</button>
+      </div>
+    </header>
+
+    <main class="main-grid">
+      <aside class="left-rail panel">
+        <section>
+          <div class="section-head">
+            <h2>Missions</h2>
+            <span class="pill">Training</span>
+          </div>
+          <div id="missionList" class="mission-list"></div>
+        </section>
+
+        <section class="section-gap">
+          <div class="section-head">
+            <h2>Coach</h2>
+            <span id="serverBadge" class="pill alt">Checking</span>
+          </div>
+          <div id="coachCard" class="coach-card">
+            <strong>Mission Control</strong>
+            <p>Real companies do not rush you into secrecy, remote access, or gift cards.</p>
+          </div>
+        </section>
+
+        <section class="section-gap">
+          <div class="section-head">
+            <h2>Safety Guide</h2>
+            <span class="pill alt">Read this</span>
+          </div>
+          <ul id="guideList" class="guide-list"></ul>
+        </section>
+
+        <section class="section-gap">
+          <div class="section-head">
+            <h2>Lessons</h2>
+            <span class="pill alt">Unlocked</span>
+          </div>
+          <div id="lessonFeed" class="lesson-feed"></div>
+        </section>
+      </aside>
+
+      <section class="center-stage">
+        <div class="panel mission-panel">
+          <div class="mission-bar">
+            <div>
+              <h2 id="missionTitle">Mission 1: Tech Support Panic</h2>
+              <p id="objectiveText">Break the script, spot the manipulation, and stop the money from leaving.</p>
+            </div>
+            <div class="status-cluster">
+              <span id="stageBadge" class="status-pill">Stage: hook</span>
+              <span id="tacticBadge" class="status-pill">Tactic: authority</span>
+              <span id="riskBadge" class="status-pill danger">Risk: calm</span>
+            </div>
+          </div>
+
+          <div class="sim-shell">
+            <div class="sim-tabs">
+              <button class="tab active" data-screen="desktop">Desktop</button>
+              <button class="tab" data-screen="giftstore">Gift Card Store</button>
+              <button class="tab" data-screen="redeem">Redemption Portal</button>
+              <button class="tab" data-screen="notes">Mission Notes</button>
+            </div>
+            <div id="simScreen" class="sim-screen"></div>
+          </div>
+        </div>
+
+        <div class="panel livecall-panel">
+          <div class="call-header">
+            <div>
+              <h2>Live Call</h2>
+              <p class="call-subtitle">Interrupt, derail, and learn the script in real time.</p>
+            </div>
+            <div id="micStatus" class="pill">Mic: off</div>
+          </div>
+
+          <div class="call-character-wrap">
+            <div class="character-stage">
+              <div class="character-backdrop"></div>
+              <div class="character-desk"></div>
+              <div id="scammerSprite" class="scammer-sprite calm frame-0"></div>
+              <div class="mood-panel">
+                <div class="mood-row">
+                  <span>Scammer mood</span>
+                  <span id="moodLabel">Calm</span>
+                </div>
+                <div class="mood-bar"><div id="moodFill"></div></div>
+              </div>
+            </div>
+
+            <div class="transcript-wrap">
+              <div id="transcript" class="transcript"></div>
+              <div class="chat-row">
+                <input id="manualInput" type="text" placeholder="Type what you say to the scammer..." />
+                <button id="sendManualBtn" class="primary">Send</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <aside class="right-rail panel">
+        <section>
+          <div class="section-head">
+            <h2>Live Interaction</h2>
+            <span class="pill alt">Simulation</span>
+          </div>
+          <div class="controls-grid">
+            <button id="openSupportBtn">Open Support Page</button>
+            <button id="visitSupportBtn">Visit Support Site</button>
+            <button id="installToolBtn">Install Remote Tool</button>
+            <button id="grantRemoteBtn">Grant Remote Access</button>
+            <button id="runScanBtn">Run Fake Scan</button>
+          </div>
+        </section>
+
+        <section class="section-gap">
+          <div class="section-head">
+            <h2>Gift Card Purchase</h2>
+            <span class="pill">Bait mode</span>
+          </div>
+          <label class="stacked">
+            <span>How many cards?</span>
+            <input id="cardCountInput" type="number" min="1" max="20" value="2" />
+          </label>
+          <label class="stacked">
+            <span>Card value</span>
+            <input id="cardValueInput" type="number" min="5" max="500" step="5" value="25" />
+          </label>
+          <button id="buyCardsBtn" class="primary">Buy Gift Cards</button>
+        </section>
+
+      </aside>
+    </main>
+  </div>
+  <script src="/app.js"></script>
+</body>
+</html>
