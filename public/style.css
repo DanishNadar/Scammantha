@@ -93,8 +93,15 @@ h1,h2,h3,p{margin:0}
 .controls-grid{display:grid;gap:10px}
 .stacked{display:grid;gap:6px;margin-bottom:12px}
 .desktop-screen,.portal-screen,.cmd-screen,.giftstore-screen,.redeem-screen,.notes-screen{min-height:540px}
-.desktop-screen{position:relative;border-radius:22px;padding:18px;overflow:hidden;background:linear-gradient(rgba(12,7,10,.22),rgba(12,7,10,.32)),url('https://images.unsplash.com/photo-1496171367470-9ed9a91ea931?q=80&w=1400&auto=format&fit=crop') center/cover}
-.desktop-taskbar{position:absolute;left:14px;right:14px;bottom:14px;height:56px;border-radius:18px;background:rgba(20,9,13,.62);backdrop-filter: blur(8px);border:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:space-between;padding:0 16px;color:#ffeef0}
+.desktop-screen{
+  position: relative;
+  border-radius: 22px;
+  padding: 18px;
+  overflow: hidden;
+  background:
+    linear-gradient(rgba(12,7,10,.22), rgba(12,7,10,.36)),
+    url('/assets/backgrounds/GarudaBackground3.jpeg') center/cover no-repeat;
+}.desktop-taskbar{position:absolute;left:14px;right:14px;bottom:14px;height:56px;border-radius:18px;background:rgba(20,9,13,.62);backdrop-filter: blur(8px);border:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:space-between;padding:0 16px;color:#ffeef0}
 .desktop-grid{display:grid;grid-template-columns:repeat(4,100px);gap:18px}
 .desktop-icon{text-align:center;color:#fff2f4}
 .desktop-icon .icon-box{width:92px;height:92px;border-radius:24px;margin:0 auto 8px;display:grid;place-items:center;background:rgba(20,9,13,.48);backdrop-filter:blur(4px);border:1px solid rgba(255,255,255,.14);box-shadow:0 12px 18px rgba(0,0,0,.18)}
